@@ -12,13 +12,13 @@ public class Main {
             //Getting input for the server name,portno,DBname
             System.out.print("Enter server: ");
             host = sc.nextLine();
-            System.out.println();
+           // System.out.println();
             System.out.print("Enter portNo: ");
             portno = sc.nextInt();
             sc.nextLine();
             System.out.print("Enter DBName: ");
             dbname = sc.nextLine();
-            System.out.println();
+           // System.out.println();
 
             //Intializing and getting input for username and password
             String user, password;
@@ -26,20 +26,17 @@ public class Main {
             user = sc.nextLine();
             System.out.printf("Enter %s DB paswword: ", dbname);
             password = sc.nextLine();
-            System.out.println();
+            //System.out.println();
 
             DBConnection db = new DBConnection(host, portno, dbname);
-            con = db.db_connection(user, password);
-            con.setAutoCommit(true);
+            con = db.db_connection(dbname,user, password);
             Table t=new Table();
             Inputs in=new Inputs();
             String[][] p= in.input();
             //sc.nextLine();
-            System.out.println("Do you want to create table(y/n): ");
-            String yesn=sc.nextLine();
-
-            if(Objects.equals(yesn,"y")) {
-                System.out.println("Enter table name: ");
+//            System.out.println("Do you want to create table(y/n): ");
+//            String yesn=sc.nextLine();
+                System.out.print("Enter table name: ");
                 tbname=sc.nextLine();
                 t.createTable(con,tbname);
                 int b=in.getB();
@@ -48,12 +45,8 @@ public class Main {
                     System.out.println(p[i][0]+" "+p[i][1]+" "+p[i][2]+" "+p[i][3]);
                     t.insertData(con,tbname,p[i][0],p[i][1],p[i][2],p[i][3]);
                 }
-            }
-            con.setAutoCommit(false);
-            // Your database operations
-            con.commit(); // To persist changes
 
-            t.showTables(con);
+           // t.showTables(con);
             System.out.print("Do you need to delete Table(y/n): ");
             String p1= sc.nextLine();
             if(Objects.equals(p1,"y")){
