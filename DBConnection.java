@@ -14,13 +14,13 @@ public class DBConnection {
         this.dbname=dbname;
     }
 
-    public Connection db_connection(String user,String password)
+    public Connection db_connection(String dbname,String user,String password)
     {
         Connection con=null;
         try{
+
             Class.forName("org.postgresql.Driver");
-            String url=String.format("jdbc:postgresql://"+host+":"+portno+"/",dbname);
-            con=DriverManager.getConnection(url,user,password);
+            con= DriverManager.getConnection("jdbc:postgresql://"+host+":"+portno+"/"+dbname, user, password);
             if (con != null && !con.isClosed()) {
                 System.out.println("Connection is open.");
             } else {
@@ -55,3 +55,4 @@ public class DBConnection {
         }
     }
 }
+
