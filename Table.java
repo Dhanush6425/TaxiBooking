@@ -5,7 +5,7 @@ public class Table {
     public void createTable(Connection con, String table_name){
         Statement st=null;
         try{
-            String sql="CREATE TABLE "+table_name+"(name VARCHAR(200),pickup_point VARCHAR(200),drop_point VARCHAR(200),booking_time TIME)";
+            String sql="CREATE TABLE "+table_name+"(name varchar(200),pickup_point int,drop_point int,booking_time TIME)";
             st= con.createStatement();
             st.executeUpdate(sql);
             if(st!=null)
@@ -24,7 +24,7 @@ public class Table {
         //ResultSet rs=null;
         try{
             System.out.println("Values will be insert into DataBase");
-            String sql=String.format("INSERT INTO %s (name,pickup_point,drop_point,booking_time) VALUES('%s','%s','%s','%s'); ",table_name,name,pickup,drop,time);
+            String sql=String.format("INSERT INTO %s(name,pickup_point,drop_point,booking_time) VALUES('%s','%s','%s','%s');",table_name,name,pickup,drop,time);
             st= con.createStatement();
             st.executeUpdate(sql);
             System.out.println("Row Inserted");
